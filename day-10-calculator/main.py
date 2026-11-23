@@ -18,6 +18,11 @@ def divide(n1, n2):
     """Returns the quotient of dividing the first number by the second."""
     return n1 / n2
 
+def get_operations_inputs():
+    operation = input("+ \n- \n* \n/ \nPick an operation: ")
+    second_number = int(input("Type the second number: \n"))
+    return operation, second_number
+
 operations = {
     "+": add,
     "-": subtract,
@@ -27,10 +32,23 @@ operations = {
 
 first_number = int(input("Type the first number: \n"))
 
-operation = input("+ \n- \n* \n/ \nPick an operation: ")
+# operation = input("+ \n- \n* \n/ \nPick an operation: ")
+#
+# second_number = int(input("Type the second number: \n"))
 
-second_number = int(input("Type the second number: \n"))
+operation, second_number = get_operations_inputs()
 
-result = operations[operation]
+calculation_function = operations[operation]
 
-print(result(first_number, second_number))
+result = calculation_function(first_number, second_number)
+
+print(result)
+
+continue_choice = input("Would you like to continue using this result? \n"
+                        "Type 'y' to use it again or 'n' to start a new calculation")
+
+if continue_choice == 'y':
+    first_number = result
+    get_operations_inputs()
+
+
