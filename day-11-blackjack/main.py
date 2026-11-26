@@ -11,20 +11,13 @@ def deal_card():
 
 def calculate_score(card_list):
     score = sum(card_list)
+    if len(card_list) == 2 and score == 21:
+        return 0
+    if score > 21 and 11 in card_list:
+        score -= 10
+        card_list.remove(11)
+        card_list.append(1)
+        return score
     return score
 
 
-player_cards = [
-    deal_card(), deal_card()
-]
-
-print(player_cards)
-
-dealer_cards = [
-    deal_card(), deal_card()
-]
-
-print(dealer_cards)
-
-
-print(calculate_score(player_cards))
