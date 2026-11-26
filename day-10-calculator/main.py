@@ -1,6 +1,5 @@
 import art
 
-print(art.logo)
 
 def add(n1, n2):
     """Returns the sum of two numbers."""
@@ -20,8 +19,10 @@ def divide(n1, n2):
 
 def get_operations_inputs():
     """Returns the user inputs operation and second number"""
-    operation = input("+ \n- \n* \n/ \nPick an operation: ")
-    second_number = int(input("Type the second number: \n"))
+    for symbol in operations:
+        print(symbol)
+    operation = input("\nPick an operation: ")
+    second_number = float(input("\nType the second number: \n"))
     return operation, second_number
 
 operations = {
@@ -33,20 +34,22 @@ operations = {
 
 should_exit = False
 while not should_exit:
-    first_number = int(input("Type the first number: \n"))
+    print(art.logo)
+    first_number = float(input("Type the first number: \n"))
     should_continue = True
     while should_continue:
         operation, second_number = get_operations_inputs()
         calculation_function = operations[operation]
         result = calculation_function(first_number, second_number)
-        print(result)
-        continue_choice = input("Would you like to continue using this result? \n"
+        print(f"{first_number} {operation} {second_number} = {result}")
+        continue_choice = input(f"\nDo you want to continue operating using this result? ( {result} )  \n"
                                 "Type 'y' to use it again or 'n' to start a new calculation."
-                                "Type 'exit' to quit: \n")
+                                " (Type 'exit' to quit): \n")
         if continue_choice == 'y':
             first_number = result
         elif continue_choice == 'n':
             should_continue = False
+            print("\n" * 20)
         elif continue_choice == 'exit':
             print('See you next time!')
             should_continue = False
